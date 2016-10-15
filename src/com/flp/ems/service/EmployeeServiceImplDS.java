@@ -16,12 +16,15 @@ public class EmployeeServiceImplDS implements IemployeeService {
 	Employee employee = null;
 	// EmployeeDaoImplForList employeeDao = new EmployeeDaoImplForList();
 	EmployeeDaoDS employeeDao = null;
-	// employeeDao = new EmployeeDaoDS();
 
 	public EmployeeServiceImplDS() {
 			employeeDao = new EmployeeDaoDS();
 	}
 
+	/*public void setEmployeeDao(EmployeeDaoDS employeeDaoDS){
+		this.employeeDao = employeeDaoDS;
+	}*/
+	
 	@Override
 	public boolean addEmployee(HashMap<String, String> employeeData) {
 		employee = new Employee();

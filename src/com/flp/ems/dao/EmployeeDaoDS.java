@@ -10,10 +10,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import com.flp.ems.domain.Employee;
 import com.flp.ems.util.Constants;
+import com.flp.ems.util.ServiceLocator;
 import com.flp.ems.util.Utils;
 
 public class EmployeeDaoDS implements IemployeeDao{
@@ -27,7 +29,15 @@ public class EmployeeDaoDS implements IemployeeDao{
 	InputStream input = classLoader.getResourceAsStream("dbDetails.properties");
 	
 	
-	
+	public EmployeeDaoDS() {
+		// TODO Auto-generated constructor stub
+		try {
+			dataSource = ServiceLocator.getDataSource();
+		} catch (NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 	public void setDataSource(DataSource dataSource){
 		this.dataSource = dataSource;	

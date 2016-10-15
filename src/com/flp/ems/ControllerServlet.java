@@ -57,7 +57,6 @@ public class ControllerServlet extends HttpServlet {
         	
         	ArrayList<Employee> emps = service.getAllEmployees();
         	request.setAttribute("empList", emps);
-        	System.out.println("In sho all");
         	destinationPage = "employeeList.jsp";
         	
         }

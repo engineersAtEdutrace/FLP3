@@ -12,7 +12,7 @@
 </head>
 <body>
 
- 	<p><a href="controller?action=addNewEmp">[Add New Employee]</a></p>
+ 	<p><a href="controller?action=addEmployee">[Add New Employee]</a></p>
  	<p><a href="controller?action=homePage">[Go To Home page]</a></p>
   
   <form name="deleteForm" method="post" action="controller">
