@@ -21,15 +21,7 @@ import sun.security.pkcs11.Secmod.DbMode;
 public class Utils {
 
 	Properties props = null;
-	/*
-	 * static Properties props = null; static Connection dbConnection;
-	 * 
-	 * public static void main(String[] args) throws SQLException, IOException {
-	 * props = getProperties(); String url = props.getProperty("jdbc.url");
-	 * dbConnection = DriverManager.getConnection(url); System.out.println(
-	 * "Connection succesfull ? " + (dbConnection != null));
-	 * insertDummyData(dbConnection); }
-	 */
+	
 
 	// CONVERTS STRING TO JAVA DATE FORMAT
 	public Date getDateFromString(String dateString) {
@@ -64,9 +56,9 @@ public class Utils {
 	public boolean ifEmailNotAssigned(String email, Connection dbConnection) throws IOException, SQLException {
 		boolean status = false;
 		// ArrayList<String> mails = new ArrayList<>();
-		props = (new Utils()).getProperties();
+		//props = (new Utils()).getProperties();
 		String tempEmail = "";
-		String selectQuery = props.getProperty("jdbc.query.selectEmails");
+		String selectQuery = "select emailId FROM employee1";
 
 		try (Statement selectStatement = dbConnection.createStatement()) {
 			ResultSet rs = selectStatement.executeQuery(selectQuery);
@@ -108,11 +100,11 @@ public class Utils {
 		String selectQuery ;
 		
 		if(field.equals(Constants.departmentId)){
-			selectQuery=props.getProperty("jdbc.query.selectDeptIds");
+			selectQuery="select * FROM employee1 WHERE DeptId=?";
 		}else if(field.equals(Constants.projectId)){
-			selectQuery=props.getProperty("jdbc.query.selectProjectIds");
+			selectQuery="select * FROM employee1 WHERE ProjectId=?";
 		}else if(field.equals(Constants.roleId)){
-			selectQuery=props.getProperty("jdbc.query.selectRolesIds");
+			selectQuery="select * FROM employee1 WHERE RoleId=?";
 		}else
 			return null;
 		

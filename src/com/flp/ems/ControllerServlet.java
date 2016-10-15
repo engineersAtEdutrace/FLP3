@@ -87,13 +87,25 @@ public class ControllerServlet extends HttpServlet {
     		employeeData.put(Constants.projectId, request.getParameter("projectId"));
     		employeeData.put(Constants.roleId, request.getParameter("roleId"));
     		
+    		System.out.println(request.getParameter("name"));
+    		System.out.println(request.getParameter("phoneNo"));
+    		System.out.println(request.getParameter("dateOfBirth"));
+    		System.out.println(request.getParameter("dateOfJoining"));
+    		System.out.println(request.getParameter("address"));
+    		System.out.println(request.getParameter("deptId"));
+    		System.out.println(request.getParameter("projectId"));
+    		System.out.println(request.getParameter("roleId"));
+    		
+    		
         	//emp = service.searchEmployeeById(empId);
         	
-        	if(!request.getParameter("empId").equals("0")){
+        	if(request.getParameter("empId").equals("0")){
+        		System.out.println("adding");
         		service.addEmployee(employeeData);
         		//TODO Show message employee added successfully
         	}
         	else{
+        		System.out.println("modifying");
         		service.modifyEmployee(employeeData);
         		//TODO Show message data modified successfully
         	}

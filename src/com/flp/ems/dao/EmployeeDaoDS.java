@@ -25,8 +25,8 @@ public class EmployeeDaoDS implements IemployeeDao{
 	private Utils utils = new Utils();
 	private String tableName = "employee1";
 	
-	ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-	InputStream input = classLoader.getResourceAsStream("dbDetails.properties");
+	/*ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+	InputStream input = classLoader.getResourceAsStream("dbDetails.properties");*/
 	
 	
 	public EmployeeDaoDS() {
@@ -62,6 +62,7 @@ public class EmployeeDaoDS implements IemployeeDao{
 		try{
 			try {
 				connection = (Connection) dataSource.getConnection();
+				connection.setAutoCommit(false);
 				insertStatement = connection.prepareStatement(insertQuery,PreparedStatement.RETURN_GENERATED_KEYS);
 				
 				insertStatement.setString(1, employee.getKinId());
@@ -84,6 +85,7 @@ public class EmployeeDaoDS implements IemployeeDao{
 				insertStatement.setInt(10, employee.getRoleId());
 
 				rows = insertStatement.executeUpdate();
+				connection.commit();
 				if (rows > 0)
 					status = true;
 				
@@ -373,7 +375,7 @@ public class EmployeeDaoDS implements IemployeeDao{
 
 	
 	private int getLatestKey(){
-		String query="select max(empId) from employee";
+		String query="select max(empId) from "+tableName;
 		Connection connection = null;
 		Statement selectStatement = null;
 		int  key = -1;
@@ -388,7 +390,10 @@ public class EmployeeDaoDS implements IemployeeDao{
 				rs = selectStatement.executeQuery(query);		
 				
 				if(rs.next())
-				 key = rs.getInt(1);
+					key = rs.getInt(1);
+				else
+					key=0;
+				
 			} 
 			catch (SQLException e) {
 				if (connection != null)

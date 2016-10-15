@@ -16,7 +16,7 @@
  	<p><a href="controller?action=homePage">[Go To Home page]</a></p>
   
   <form name="deleteForm" method="post" action="controller">
-  		<input type="hidden" name="action" value="deleteEmp" />
+  		<input type="hidden" name="action" value="deleteEmployee" />
   	<table>
     	<tr>
     	  	<th><a href="javascript:checkAll(document.deleteForm.id)">Select All</a></th>
